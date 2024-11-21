@@ -1,0 +1,208 @@
+/* General styles for the page */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Orbitron', sans-serif;
+}
+
+body {
+    background: #000; /* Dark space background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+}
+
+/* Cosmic background effect - stars layer */
+.stars {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, #1e1e2f, #000) fixed;
+    z-index: 0; /* Stars are behind content */
+}
+
+.stars::before, .stars::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200%;
+    height: 200%;
+    background: transparent;
+    z-index: 0; /* Stars background */
+    box-shadow: 
+        0 0 2px 2px rgba(255, 255, 255, 0.8),
+        100px 200px 2px 2px rgba(255, 255, 255, 0.8),
+        300px 100px 2px 2px rgba(255, 255, 255, 0.8),
+        500px 300px 2px 2px rgba(255, 255, 255, 0.8),
+        700px 500px 2px 2px rgba(255, 255, 255, 0.8);
+    animation: pulse 3s infinite;
+}
+
+/* Pulsating effect for stars */
+@keyframes pulse {
+    0%, 100% {
+        opacity: 0.8;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.2);
+    }
+}
+
+/* Big planet */
+.planet {
+    position: absolute;
+    width: 200px;
+    height: 200px;
+    background: radial-gradient(circle at 30% 30%, #ff6347, #8b0000);
+    border-radius: 50%;
+    bottom: 10%;
+    left: 10%;
+    box-shadow: 0 0 50px rgba(255, 255, 255, 0.5);
+    animation: planetMove 10s linear infinite alternate;
+    z-index: 1; /* Planet in front of stars */
+}
+
+/* Animation for planet movement */
+@keyframes planetMove {
+    0% {
+        transform: translateY(0) rotate(0deg);
+    }
+    100% {
+        transform: translateY(-20px) rotate(360deg);
+    }
+}
+
+/* Comet effect */
+.comet {
+    position: absolute;
+    top: 10%;
+    right: 20%;
+    width: 150px;
+    height: 2px;
+    background: linear-gradient(to right, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0));
+    animation: cometFly 5s ease-in-out infinite;
+    z-index: 1; /* Comet in front of stars */
+}
+
+/* Animation for the comet */
+@keyframes cometFly {
+    0% {
+        transform: translate(0, 0) rotate(45deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translate(-100vw, 100vh) rotate(45deg);
+        opacity: 0;
+    }
+}
+
+/* Container for content */
+.container {
+    position: relative;
+    z-index: 2; /* Content on top of everything */
+}
+
+/* Text animations */
+h1 {
+    font-size: 3rem;
+    color: #ff6347;
+    margin: 20px 0;
+    animation: fadeIn 2s ease-out;
+}
+
+p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    color: #fff;
+    animation: fadeIn 3s ease-out;
+}
+
+/* Button Styles */
+.buttons {
+    display: flex;
+    gap: 20px;
+    animation: slideIn 2s ease-out;
+}
+
+.btn {
+    background-color: #1e90ff; /* Sky blue */
+    color: white;
+    padding: 15px 30px;
+    border-radius: 25px;
+    font-size: 1.2rem;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    border: none;
+    cursor: pointer;
+}
+
+/* Button hover effects */
+.btn:hover {
+    background-color: #4682b4;
+    transform: scale(1.1);
+}
+
+/* Button active (pressed) effect */
+.btn:active {
+    transform: scale(0.95);
+    background-color: #5a9bd4;
+}
+
+/* Text fade-in animation */
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Animation for buttons sliding in */
+@keyframes slideIn {
+    0% {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Adjust moon position and size for better appearance */
+.moon {
+    position: absolute;
+    top: 5%;
+    left: 10%;
+    width: 100px;
+    height: 100px;
+    background: radial-gradient(circle, #fff, #ccc);
+    border-radius: 50%;
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+    z-index: 2; /* Moon on top of stars */
+}
+
+/* Adjust alien position to top right corner */
+.alien {
+    position: absolute;
+    top: 5%;
+    right: 5%;
+    width: 100px;
+    height: 100px;
+    background: url('alien.jfif') no-repeat center center;
+    background-size: contain;
+    z-index: 3; /* Alien in front of moon and stars */
+}
